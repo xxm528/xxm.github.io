@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<localRepository>F:\\my_repository</localRepository>
+	<pluginGroups>
+	</pluginGroups>
+
+	<proxies>
+	</proxies>
+
+	<servers>
+		<server>
+			<id>nexus-releases</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server>
+			<id>nexus-snapshots</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		 <server>
+			<id>3rd_part</id>  
+			<username>dev</username>
+			<password>dev123</password>
+		</server>
+	</servers>
+
+	<mirrors>
+		<!--
+		<mirror>
+			<id>nexus</id>
+			<mirrorOf>*</mirrorOf>
+			<url>http://192.168.8.59:8081/repository/maven-public/</url>
+		</mirror>
+		-->
+		
+		<mirror>
+　　		<id>alimaven</id>
+　　		<mirrorOf>central</mirrorOf>
+　　		<name>aliyun maven</name>
+　　		<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</mirror>
+		
+	</mirrors>
+
+	<profiles>
+		<profile>
+			<id>central</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>http://central</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<url>http://central</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+		<profile>
+			<id>jdk1.8</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<jdk>1.8</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.source>1.8</maven.compiler.source>
+				<maven.compiler.target>1.8</maven.compiler.target>
+				<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+			</properties>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>central</activeProfile>
+	</activeProfiles>
+</settings>

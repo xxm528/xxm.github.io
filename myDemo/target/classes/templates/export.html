@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>报表导出</title>
+    <script th:href="@{/js/jquery-3.4.1.js}" src="js/jquery-3.4.1.js" rel="stylesheet"></script>
+</head>
+<body>
+<input type="button" value="导出" class="ui_input_btn01" id="daochule" th:onclick="test"/>
+</body>
+<script type="text/javascript">
+    $(function () {
+    $("#daochule").click(function () {
+        window.location.href="/xxm/export";
+    })})
+</script>
+</html>
