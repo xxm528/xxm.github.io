@@ -1,0 +1,256 @@
+<!--页面需调整-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ip管理</title>
+</head>
+<body class="gray-bg">
+<div class="my-title">
+    个人管理<span>></span>团队申请
+</div>
+
+<form method="post" name="mainform" >
+    <div class="wrapper wrapper-content">
+        <div class="form-horizontal">
+            <div class="form-group wp90">
+                <label class="col-sm-2 control-label">
+                    IP地址：
+                </label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8 fright tright mt-4">
+                    <!--<button type="button" class="btn btn-w-m btn-primary ml20" th:if="*{#operateauth.checkRead(operateType)}" onclick="javascript:doSearch();">-->
+                    <button type="button" class="btn btn-w-m btn-primary ml20"  onclick="javascript:doSearch();">
+                        添加
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="ibox-content">
+
+                       <!-- <div tiles:replace="paging_top"></div>-->
+
+                        <table class="table table-bordered table-hover dataTables-example mt20 my-table-1 my-fixed-table">
+                            <colgroup>
+                                <!--    1    -->
+                                <col width="" align="" class="wp4"/>
+                                <!--    2    -->
+                                <col width="" align="" class="wp12"/>
+                                <!--    3   -->
+                                <col width="" align="" class="wp8"/>
+                                <!--    4    -->
+                                <col width="" align="" class="wp12"/>
+                                <!--    4    -->
+                                <col width="" align="" class="wp12"/>
+                                <!--    5    -->
+                                <col width="" align="" class="wp32"/>
+
+                            </colgroup>
+
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>用户姓名</th>
+                                <th>IP地址</th>
+                                <th>用户状态</th>
+                                <th>其他操作</th>
+                                <th>备注</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="item:*{1}">
+                               <!-- <td th:title="${item.absNo}" class="my-1line" th:text="${item.absNo}">-->
+                                <td>
+                                    序号ID
+                                </td>
+                                <td>
+                                    <!--<a href="javascript:void(0);" class="tline ml10 mr10" th:if="*{#operateauth.checkRead(operateType)}" th:onclick="|javascript:doDetail(${item.id});|">
+                                        详情
+                                    </a>
+                                    <a href="javascript:void(0);" class="tline ml10 mr10" th:if="*{#operateauth.checkUpdate(operateType)}" th:onclick="|javascript:doEdit(${item.id});|">
+                                        编辑
+                                    </a>-->
+                                    aaaa
+                                </td>
+                                <td>
+                                   <!-- <a href="javascript:void(0);" class="tline ml10 mr10" th:if="*{#operateauth.checkUpdate(operateType)} and ${item.memberOnCount le 0}" th:onclick="|javascript:doMemberOn(${item.id});|">
+                                        开通
+                                    </a>
+                                    <a href="javascript:void(0);" class="tline ml10 mr10" th:if="*{#operateauth.checkUpdate(operateType)} and ${item.memberOnCount gt 0}" th:onclick="|javascript:doMemberOff(${item.id});|">
+                                        关闭
+                                    </a>-->
+
+                                    aaaa
+                                </td>
+                                <td>
+                                    序号ID
+                                </td>
+                                <td>
+                                    序号ID
+                                </td>
+                                <td>
+                                    序号ID
+                                </td>
+                                <!--<td th:title="${item.emplBase.jobNumber}" class="my-1line" th:text="${item.emplBase.jobNumber}">
+                                    工号
+                                </td>
+                                <td th:title="${item.emplBase.name}" class="my-1line" th:text="${item.emplBase.name}">
+                                    姓名
+                                </td>
+                                <td th:title="${item.emplBase.organizationName}" class="my-1line" th:text="${item.emplBase.organizationName}">
+                                    所属机构
+                                </td>
+                                <td th:title="${item.statusAlias}" th:class="|my-1line ${#onoffutil.getStyleClass(item.status)}|" th:text="${item.statusAlias}">
+                                    用户状态
+                                </td>
+                                <td th:title="${item.remark}" class="my-1line" th:text="${item.remark}">
+                                    备注
+                                </td>-->
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- 分页符开始 -->
+                        <!--<div tiles:replace="paging_bottom"></div>-->
+                        <!-- 分页符结束 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+
+        //查询
+        function doSearch()
+        {
+            doSubmit("mainform", /*[[ @{/user/userlist/listPager} ]]*/"/search");
+        }
+
+        //添加
+        function doAdd()
+        {
+            doSubmit("mainform", /*[[ @{/user/useredit} ]]*/"/add");
+        }
+
+        //详情
+        function doDetail(id)
+        {
+            var path = /*[[ @{/user/userdetail} ]]*/"/detail";
+            doSubmit("mainform", path + "/" + id);
+        }
+
+        //编辑
+        function doEdit(id)
+        {
+            var path = /*[[ @{/user/useredit} ]]*/"/edit";
+            doSubmit("mainform", path + "/" + id);
+        }
+
+        //开通会员
+        function doMemberOn(id)
+        {
+            swal({
+                    title: "是否开通直销APP会员？",
+                    type: "info",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                },
+                function(){
+                    setTimeout(function(){
+                        $.ajax({
+                            dataType:  "json",
+                            data: {
+                                id : id,
+                            },
+                            async : false,
+                            url:/*[[ @{/user/useredit/memberOn} ]]*/"/memberOn",
+                            success: function(data) {
+                                if(data['code'] == 0 ) {
+                                    //成功
+                                    swal({
+                                            title : "开通成功",
+                                            type: "success",
+                                        },
+                                        function() {
+                                            doPrev(/*[[ @{/user/userlist} ]]*/'/prev');
+                                        });
+                                } else {
+                                    //错误
+                                    showErrors(data);
+                                }
+                            },
+                            error:function(){
+                                //异常
+                                swal({
+                                    title : "处理异常",
+                                    type: "error",
+                                });
+                            }
+                        });
+                    }, 2000);
+                });
+        }
+
+        //关闭会员
+        function doMemberOff(id)
+        {
+            swal({
+                    title: "是否关闭直销APP会员？",
+                    type: "info",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                },
+                function(){
+                    setTimeout(function(){
+                        $.ajax({
+                            dataType:  "json",
+                            data: {
+                                id : id,
+                            },
+                            async : false,
+                            url:/*[[ @{/user/useredit/memberOff} ]]*/"/memberOff",
+                            success: function(data) {
+                                if(data['code'] == 0 ) {
+                                    //成功
+                                    swal({
+                                            title : "关闭成功",
+                                            type: "success",
+                                        },
+                                        function() {
+                                            doPrev(/*[[ @{/user/userlist} ]]*/'/prev');
+                                        });
+                                } else {
+                                    //错误
+                                    showErrors(data);
+                                }
+                            },
+                            error:function(){
+                                //异常
+                                swal({
+                                    title : "处理异常",
+                                    type: "error",
+                                });
+                            }
+                        });
+                    }, 2000);
+                });
+        }
+
+        /*]]>*/
+    </script>
+
+</form>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.xxm.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "user")
@@ -11,6 +12,7 @@ public class UserInfo {
     private Integer id;
     private String userName;
     private String userPassword;
+    private Date createTime;
 
     @Column(name = "id")
     public Integer getId() {
@@ -38,4 +40,10 @@ public class UserInfo {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+    @Column(name = "create_time",columnDefinition = "TIMESTAMP", insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getCreateTime() { return createTime; }
+
+    public void setCreateTime(Date createTime) { this.createTime = createTime;}
 }
